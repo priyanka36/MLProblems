@@ -1,0 +1,43 @@
+Hold-OutSet : A cross-validation method where we have a large amount of data and model inference is a time-consuming process.
+There are many different ways one can do cross-validation and it is the most critical step when it comes to building a machine learning model which is generalizable when it 
+comes to unseen data.
+Choosing the right cross-validation depends on the dataset
+you are dealing with and one's choice of cross-validation on one dataset may or may not apply to other datasets.
+The few cross validation techniques widely used are:
+k-fold cross-validation
+stratified k-fold cross validation
+hold-out based validation 
+leave-one-out cross-validation 
+group k-fold cross validation
+
+The next important type of cross-validation is stratified k-fold .If you have a skewed dataset for binary classification with 90% positive samples and
+10% negative samples you don't want to use random k-fold cross-validation.Using
+simple k-fold cross-validation for a dataset like this can result in folds with all
+negative samples. In these cases, we prefer using stratified k-fold cross-validation.
+Stratified k-fold cross-validation keeps the ratio of labels in each fold constant. So,
+in each fold, you will have the same 90% positive and 10% negative samples. Thus,
+whatever metric you choose to evaluate, it will give similar results across all folds.
+
+
+Cross-validation is the first and most essential step when it comes to building
+machine learning models. If you want to do feature engineering, split your data first.
+If you're going to build models, split your data first. If you have a good cross-
+validation scheme in which validation data is representative of training and real-
+world data, you will be able to build a good machine learning model which is highly
+generalizable.
+The types of cross-validation presented in this chapter can be applied to almost any
+machine learning problem. Still, you must keep in mind that cross-validation also
+depends a lot on the data and you might need to adopt new forms of cross-validation
+depending on your problem and data.
+For example, let’s say we have a problem in which we would like to build a model
+to detect skin cancer from skin images of patients. Our task is to build a binary
+classifier which takes an input image and predicts the probability for it being benign
+or malignant.
+In these kinds of datasets, you might have multiple images for the same patient in
+the training dataset. So, to build a good cross-validation system here, you must have
+stratified k-folds, but you must also make sure that patients in training data do not
+appear in validation data. Fortunately, scikit-learn offers a type of cross-validation
+known as GroupKFold. Here the patients can be considered as groups. But
+unfortunately, there is no way to combine GroupKFold with StratifiedKFold in
+scikit-learn. So you need to do that yourself. I’ll leave it as an exercise for the
+reader.
