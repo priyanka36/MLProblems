@@ -9,13 +9,7 @@ if __name__ == "__main__":
     kf = model_selection.KFold(n_splits=5)
     kf.split(X=df)
     print(kf)
-    for fold,(trn_,val_) in enumerate(kf.split(X=df)):
-        print(fold)
-        df.loc[val_,'kfold']=fold
-        i=0
-        df[i]=[]
-        for i in range(5):
-            if df["kfold"]==0:
-                df[i].append(df["kfold"])
-                print(df[i])
+    for fold,(trn_,val_) in enumerate(kf.split(X=df)): #iterator(kf.split(X=df)
+        df.loc[val_,'kfold'] = fold
+        print(df.loc[val_,'kfold'])
     df.to_csv("train_folds.csv",index=False)
