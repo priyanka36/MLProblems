@@ -1,0 +1,33 @@
+In the example presented in figure 7, let’s say our job is to predict the sales from
+time step 31 to 40. We can then keep 21 to 30 as hold-out and train our model from
+step 0 to step 20. You should note that when you are predicting from 31 to 40, you
+should include the data from 21 to 30 in your model; otherwise, performance will
+be sub-par.
+In many cases, we have to deal with small datasets and creating big validation sets
+means losing a lot of data for the model to learn. In those cases, we can opt for a
+type of k-fold cross-validation where k=N, where N is the number of samples in the
+dataset. This means that in all folds of training, we will be training on all data
+samples except 1. The number of folds for this type of cross-validation is the same
+as the number of samples that we have in the dataset.
+One should note that this type of cross-validation can be costly in terms of the time
+it takes if the model is not fast enough, but since it’s only preferable to use this
+cross-validation for small datasets, it doesn’t matter much.
+Now we can move to regression. The good thing about regression problems is that
+we can use all the cross-validation techniques mentioned above for regression
+problems except for stratified k-fold. That is we cannot use stratified k-fold directly,
+but there are ways to change the problem a bit so that we can use stratified k-fold
+for regression problems. Mostly, simple k-fold cross-validation works for any
+regression problem. However, if you see that the distribution of targets is not
+consistent, you can use stratified k-fold
+
+To use stratified k-fold for a regression problem, we have first to divide the target
+into bins, and then we can use stratified k-fold in the same way as for classification
+problems. There are several choices for selecting the appropriate number of bins. If
+you have a lot of samples( > 10k, > 100k), then you don’t need to care about the
+number of bins. Just divide the data into 10 or 20 bins. If you do not have a lot of
+samples, you can use a simple rule like Sturge’s Rule to calculate the appropriate
+number of bins.
+Sturge’s rule:
+Number of Bins = 1 + log 2 (N)
+Where N is the number of samples you have in your dataset. This function is plotted
+in Figure 8.
