@@ -1,0 +1,54 @@
+When it comes to machine learning problems, you will encounter a lot of different
+types of metrics in the real world. Sometimes, people even end up creating metrics
+that suit the business problem. It’s out of the scope of this book to introduce and
+explain each and every type of metric. Instead, we will see some of the most
+common metrics that you can use when starting with your very first few projects.
+
+
+At the start of the book, we introduced supervised and unsupervised learning.
+Although there are some kinds of metrics that you can use for unsupervised
+learning, we will only focus on supervised. The reason for this is because supervised
+problems are in abundance compared to un-supervised, and evaluation of
+unsupervised methods is quite subjective.
+
+If we talk about classification problems, the most common metrics used are:
+- Accuracy
+- Precision (P)
+- Recall (R)
+- F1 score (F1)
+- Area under the ROC (Receiver Operating Characteristic) curve or simply
+AUC (AUC)
+- Log loss
+- Precision at k (P@k)
+- Average precision at k (AP@k)
+- Mean average precision at k (MAP@k)
+When it comes to regression, the most commonly used evaluation metrics are:
+- Mean absolute error (MAE)
+- Mean squared error (MSE)
+- Root mean squared error (RMSE)
+- Root mean squared logarithmic error (RMSLE)
+- Mean percentage error (MPE)
+- Mean absolute percentage error (MAPE)
+- R 2
+
+Knowing about how the aforementioned metrics work is not the only thing we have
+to understand. We must also know when to use which metrics, and that depends on
+
+what kind of data and targets you have. I think it’s more about the targets and less
+about the data.
+To learn more about these metrics, let’s start with a simple problem. Suppose we
+have a binary classification problem, i.e. a problem in which there are only two
+targets. Let’s suppose it’s a problem of classifying chest x-ray images. There are
+chest x-ray images with no problem, and some of the chest x-ray images have
+collapsed lung which is also known as pneumothorax. So, our task is to build a
+classifier that given a chest x-ray image can detect if it has pneumothorax.
+
+We also assume that we have an equal number of pneumothorax and non-
+pneumothorax chest x-ray images; let’s say 100 each. Thus, we have 100 positive
+samples and 100 negative samples with a total of 200 images.
+The first step is to divide the data described above into two equal sets of 100 images
+each, i.e. training and validation set. In both the sets, we have 50 positive and 50
+negative samples.
+
+When we have an equal number of positive and negative samples in a binary
+classification metric, we generally use accuracy, precision, recall and f1.
