@@ -118,6 +118,20 @@ def recall(y_true,y_pred):
 
 recall(l1, l2)
 
+def f1_score(y_true,y_pred):
+    '''
+    Function to calculate f1_score
+    :param y_true: list of true values
+    :param y_pred: list of predicted values
+    :return: precision score
+    '''
+    tp = true_positive(y_true,y_pred)
+    fp = false_positive(y_true,y_pred)
+    fn = false_negative(y_true,y_pred)
+
+    f1_score = ((2*tp)/((2*tp)+fp+fn))
+    print(f"{f1_score},is the f1score")
+
 
 y_true = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
@@ -133,6 +147,7 @@ y_pred = [0.02638412, 0.11114267, 0.31620708,
 
 precisions = []
 recalls = []
+f1_scores = []
 predicted=[]
 thresholds = [0.0490937 , 0.05934905, 0.079377,
 0.08584789, 0.11114267, 0.11639273,
@@ -145,8 +160,10 @@ for i in thresholds:
     predicted.append(temp_prediction)
     p = precision(y_true,temp_prediction)
     r = recall(y_true,temp_prediction)
-precisions.append(p)
-recalls.append(r)
+    s = f1_score(y_true,temp_prediction)
+    precisions.append(p)
+    recalls.append(r)
+    f1_scores.append(s)
 print(precisions)
 print(recalls)
 
@@ -154,3 +171,13 @@ plt.figure(figsize=(7,7))
 plt.plot(recalls,precisions)
 plt.xlabel('Recall',fontsize=15)
 plt.ylabel('Precision',fontsize=15)
+plt.show()
+plt.plot(f1_scores,precisions)
+plt.xlabel('f1_scores',fontsize=15)
+plt.ylabel('Precision',fontsize=15)
+
+plt.show()
+plt.plot(f1_scores,recalls)
+plt.xlabel('f1_scores',fontsize=15)
+plt.ylabel('recalls',fontsize=15)
+plt.show()
