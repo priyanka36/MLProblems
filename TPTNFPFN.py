@@ -108,6 +108,7 @@ def recall(y_true,y_pred):
     :param y_true: list of true values
     :param y_pred: list of predicted values
     :return: precision score
+    TPR or recall is also known as sensitivity.
     '''
     tp = true_positive(y_true,y_pred)
     fn = false_negative(y_true,y_pred)
@@ -180,4 +181,13 @@ plt.show()
 plt.plot(f1_scores,recalls)
 plt.xlabel('f1_scores',fontsize=15)
 plt.ylabel('recalls',fontsize=15)
+plt.show()
+
+plt.figure(figsize=(7,7))
+plt.fill_between(precisions, recalls, alpha=0.4)
+plt.plot(precisions, recalls, lw=3)
+plt.xlim(0, 1.0)
+plt.ylim(0, 1.0)
+plt.xlabel('FPR', fontsize=15)
+plt.ylabel('TPR', fontsize=15)
 plt.show()

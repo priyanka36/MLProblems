@@ -1,0 +1,53 @@
+AUC values range from 0 to 1.
+- AUC = 1 implies you have a perfect model. Most of the time, it means that
+you made some mistake with validation and should revisit data processing
+and validation pipeline of yours. If you didn’t make any mistakes, then
+congratulations, you have the best model one can have for the dataset you
+built it on.
+- AUC = 0 implies that your model is very bad (or very good!). Try inverting
+the probabilities for the predictions, for example, if your probability for the
+positive class is p, try substituting it with 1-p. This kind of AUC may also
+mean that there is some problem with your validation or data processing.
+- AUC = 0.5 implies that your predictions are random. So, for any binary
+classification problem, if I predict all targets as 0.5, I will get an AUC of
+0.5.
+AUC values between 0 and 0.5 imply that your model is worse than random. Most
+of the time, it’s because you inverted the classes. If you try to invert your
+predictions, your AUC might become more than 0.5. AUC values closer to 1 are
+considered good.
+But what does AUC say about our model?
+Suppose you get an AUC of 0.85 when you build a model to detect pneumothorax
+from chest x-ray images. This means that if you select a random image from your
+dataset with pneumothorax (positive sample) and another random image without
+pneumothorax (negative sample), then the pneumothorax image will rank higher
+than a non-pneumothorax image with a probability of 0.85.
+
+
+After calculating probabilities and AUC, you would want to make predictions on
+the test set. Depending on the problem and use-case, you might want to either have
+probabilities or actual classes. If you want to have probabilities, it’s effortless. You
+already have them. If you want to have classes, you need to select a threshold. In
+the case of binary classification, you can do something like the following.
+Prediction = Probability >= Threshold
+Which means, that prediction is a new list which contains only binary variables. An
+item in prediction is 1 if the probability is greater than or equal to a given threshold
+else the value is 0.
+And guess what, you can use the ROC curve to choose this threshold! The ROC
+curve will tell you how the threshold impacts false positive rate and true positive
+rate and thus, in turn, false positives and true positives. You should choose the
+threshold that is best suited for your problem and datasets.
+For example, if you don’t want to have too many false positives, you should have a
+high threshold value. This will, however, also give you a lot more false negatives.
+Observe the trade-off and select the best threshold. Let’s see how these thresholds
+impact true positive and false positive values.
+
+
+Another important metric you should learn after learning AUC is log loss. In case
+of a binary classification problem, we define log loss as:
+Log Loss = - 1.0 * ( target * log(prediction) + (1 - target) * log(1 - prediction) )
+Where target is either 0 or 1 and prediction is a probability of a sample belonging
+to class 1.
+For multiple samples in the dataset, the log-loss over all samples is a mere average
+of all individual log losses. One thing to remember is that log loss penalizes quite
+high for an incorrect or a far-off prediction, i.e. log loss punishes you for being very
+sure and very wrong.
