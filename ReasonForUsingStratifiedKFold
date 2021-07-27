@@ -1,0 +1,21 @@
+So, we have converted the target values.
+Looking at figure 6 we can say that the quality is very much skewed. Some classes have a lot of samples, and some don’t have that many. If we do a simple k-fold, we
+won’t have an equal distribution of targets in every fold. Thus, we choose stratified
+k-fold in this case.
+
+The rule is simple. If it’s a standard classification problem, choose stratified k-fold
+blindly.
+But what should we do if we have a large amount of data? Suppose we have 1
+million samples. A 5 fold cross-validation would mean training on 800k samples
+and validating on 200k. Depending on which algorithm we choose, training and
+even validation can be very expensive for a dataset which is of this size. In these
+cases, we can opt for a hold-out based validation.
+The process for creating the hold-out remains the same as stratified k-fold. For a
+dataset which has 1 million samples, we can create ten folds instead of 5 and keep
+one of those folds as hold-out. This means we will have 100k samples in the hold-
+out, and we will always calculate loss, accuracy and other metrics on this set and
+train on 900k samples.
+Hold-out is also used very frequently with time-series data. Let’s assume the
+problem we are provided with is predicting sales of a store for 2020, and you are
+provided all the data from 2015-2019. In this case, you can select all the data for
+2019 as a hold-out and train your model on all the data from 2015 to 2018.

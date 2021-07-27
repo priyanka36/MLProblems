@@ -31,3 +31,5 @@ Sturge’s rule:
 Number of Bins = 1 + log 2 (N)
 Where N is the number of samples you have in your dataset. This function is plotted
 in Figure 8.
+
+

@@ -101,3 +101,32 @@ plt.xticks(range(0, 26, 5))
 plt.xlabel("max_depth", size=20)
 plt.ylabel("accuracy", size=20)
 plt.show()
+
+
+# We see that the best score for test data is obtained when max_depth has a value of
+# 14. As we keep increasing the value of this parameter, test accuracy remains the
+# same or gets worse, but the training accuracy keeps increasing. It means that our
+# simple decision tree model keeps learning about the training data better and better
+# with an increase in max_depth, but the performance on test data does not improve
+# at all.
+
+# This is called overfitting.
+# The model fits perfectly on the training set and performs poorly when it comes to
+# the test set. This means that the model will learn the training data well but will not
+# generalize on unseen samples. In the dataset above, one can build a model with very
+# high max_depth which will have outstanding results on training data, but that kind
+# of model is not useful as it will not provide a similar result on the real-world samples
+# or live data.
+
+# One might argue that this approach isn’t overfitting as the accuracy of the test set
+# more or less remains the same. Another definition of overfitting would be when the
+# test loss increases as we keep improving training loss. This is very common when
+# it comes to neural networks.
+# Whenever we train a neural network, we must monitor loss during the training time
+# for both training and test set. If we have a very large network for a dataset which is
+# quite small (i.e. very less number of samples), we will observe that the loss for both
+# training and test set will decrease as we keep training. However, at some point, test
+# loss will reach its minima, and after that, it will start increasing even though training
+# loss decreases further. We must stop training where the validation loss reaches its
+# minimum value.
+# This is the most common explanation of overfitting.
