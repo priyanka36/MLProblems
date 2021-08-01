@@ -42,12 +42,3 @@ Observe the trade-off and select the best threshold. Let’s see how these thres
 impact true positive and false positive values.
 
 
-Another important metric you should learn after learning AUC is log loss. In case
-of a binary classification problem, we define log loss as:
-Log Loss = - 1.0 * ( target * log(prediction) + (1 - target) * log(1 - prediction) )
-Where target is either 0 or 1 and prediction is a probability of a sample belonging
-to class 1.
-For multiple samples in the dataset, the log-loss over all samples is a mere average
-of all individual log losses. One thing to remember is that log loss penalizes quite
-high for an incorrect or a far-off prediction, i.e. log loss punishes you for being very
-sure and very wrong.
